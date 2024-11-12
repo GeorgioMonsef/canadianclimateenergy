@@ -1,6 +1,15 @@
 import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 
 const Footer = () => {
+    // Step 1: Set up the state for the button text
+    const [buttonText, setButtonText] = useState('Subscribe');
+
+    // Step 2: Handle button click to update the text
+    const handleButtonClick = () => {
+        setButtonText('Coming Soon');
+    };
+
     return (
         <footer className="w-full py-14 bg-white">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -21,8 +30,12 @@ const Footer = () => {
                             className="py-3 px-6 h-14 border border-gray-300 text-navy-800 shadow-sm rounded-full focus:outline-none"
                             placeholder="Enter your email..."
                         />
-                        <button className="h-14 py-3.5 px-7 bg-red-600 text-navy-500 shadow-sm rounded-full font-bold hover:bg-red-700">
-                            Subscribe
+                        {/* Step 3: Add onClick to update the text when clicked */}
+                        <button
+                            className="h-14 py-3.5 px-7 bg-red-600 text-navy-500 shadow-sm rounded-full font-bold hover:bg-red-700"
+                            onClick={handleButtonClick}
+                        >
+                            {buttonText} {/* Dynamically render the button text */}
                         </button>
                     </div>
                 </div>
@@ -72,7 +85,7 @@ const Footer = () => {
                             <div className="relative w-full h-64">
                                 <iframe
                                     className="w-full h-full border-0"
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.7486247589225!2d144.9630583156825!3d-37.814107979751885!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0x5045675218ce6e0!2sFlinders%20St%20Station!5e0!3m2!1sen!2sau!4v1628911132047!5m2!1sen!2sau"
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1382.3896454628227!2d-75.7188022115457!3d45.41948178980155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce045c1732df8f%3A0x76e8673a89e1bfc8!2s310%20Miwate%20Pvt%2C%20Priv%2C%20ON!5e0!3m2!1sen!2sca!4v1729711609964!5m2!1sen!2sca"
                                     allowFullScreen=""
                                     loading="lazy"
                                 ></iframe>
@@ -89,7 +102,8 @@ const Footer = () => {
                             <h4 className="text-lg text-red-600 font-medium mb-7"> &copy; 2024 Canadian Climate Energy, powered by{' '}
                                 <a href="https://www.levantlabs.ca" target="_blank" rel="noopener noreferrer"
                                    className="text-red-600 hover:underline"> &copy; Levant Labs </a>
-                            </h4>                        </span>
+                            </h4>
+                        </span>
                         <div className="flex mt-4 space-x-4 sm:justify-center lg:mt-0">
                             {/* Instagram Link */}
                             <a

@@ -93,6 +93,14 @@ const Form = () => {
         }
     };
 
+    // Helper function to split and capitalize field names
+    const formatFieldName = (field) => {
+        return field
+            .split(/(?=[A-Z])/) // Split at uppercase letters
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize each word
+            .join(' '); // Join them back with spaces
+    };
+
     return (
         <div className="w-full max-w-3xl p-8 bg-white shadow-lg rounded-lg mx-auto mt-8">
             <h2 className="text-3xl font-bold mb-6 text-navy">Contact Us</h2>
@@ -100,7 +108,7 @@ const Form = () => {
                 {['firstName', 'lastName', 'phoneNumber', 'email', 'address', 'postalCode'].map((field) => (
                     <div key={field}>
                         <label htmlFor={field} className="block text-sm font-medium text-navy mb-2">
-                            {field.split(/(?=[A-Z])/).join(' ')}
+                            {formatFieldName(field)}
                         </label>
                         <input
                             type={field === 'phoneNumber' ? 'tel' : 'text'}
@@ -109,14 +117,14 @@ const Form = () => {
                             value={formData[field]}
                             onChange={handleChange}
                             className={`block w-full px-4 py-3 border rounded-md shadow-sm focus:outline-none focus:ring-2 ${errors[field] ? 'border-red-500' : 'border-gray-300'} focus:ring-red-500`}
-                            placeholder={`Enter your ${field.split(/(?=[A-Z])/).join(' ')}`}
+                            placeholder={`Enter your ${formatFieldName(field)}`}
                         />
                         {errors[field] && <p className="mt-1 text-red-500 text-sm">{errors[field]}</p>}
                     </div>
                 ))}
                 <button
                     type="submit"
-                    className="w-full py-3 px-6 bg-navy bg-blue-500 text-red-500 font-semibold rounded-lg shadow-md hover:bg-navy-dark focus:outline-none focus:ring-2 focus:ring-navy focus:ring-opacity-50 transition-all duration-300"
+                    className="w-full py-3 px-6 bg-navy bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-navy-dark focus:outline-none focus:ring-2 focus:ring-navy focus:ring-opacity-50 transition-all duration-300"
                 >
                     Submit
                 </button>
